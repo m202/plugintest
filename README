@@ -1,0 +1,24 @@
+plugintest - dynamic loader example
+Colin King <cking@m202.net>
+
+This is a small demonstration of Unix-style dynamic loading. This is a powerful
+feature of the C library that allows you to write and load plugins into your
+applications. There are many ways to do this through frameworks, but this seems
+to be the simplest.
+
+This compiles in Linux and possibly FreeBSD.
+
+http://en.wikipedia.org/wiki/Dynamic_loading
+
+$ make
+gcc -o test test.c -ldl
+gcc -fPIC -shared -o plug1.so plug1.c
+gcc -fPIC -shared -o plug2.so plug2.c
+
+$ ./test 
+Enter object file name: ./plug1.so
+Enter number to pass to init() function: 10
+Number 10 will be passed
+Object file loaded
+message from plugin: Inside plug1.c
+message from plugin: given number 10
